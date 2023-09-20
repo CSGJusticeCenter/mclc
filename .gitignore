@@ -1,7 +1,5 @@
 # ---------------------------
 # adjust this list to fit your project needs
-# if making a netlify site, do NOT ignore *.html or image files
-# extensions are all lowercase as Windows is not case-sensitive
 # ---------------------------
 
 # r utility files
@@ -30,8 +28,8 @@
 *.sav
 *.twb
 *.twbr
-*.xlsx
 *.xls
+*.xlsx
 *.xml
 *.zip
 
@@ -65,5 +63,15 @@
 *.mp4
 *.wma
 
-# stata 18 temp files
-*.stswp
+# do not ignore
+!mclc_pre_data_2022.xlsx
+!Comparison_MCLC_and_BJS_data_v1.xlsx
+!/data/raw/NCRP/ICPSR_38492-V1/ICPSR_38492/*
+!/data/raw/NCRP/ICPSR_38492-V1/ICPSR_38492/D*/*
+!/data/raw/notes/*
+!/data/raw/notes/*
+!/data/raw/PUMS/*
+!/data/raw/SC-EST/*
+!/data/raw/BJS/AParS/*
+!/data/raw/BJS/AParS/I*/I*/*
+!/data/raw/BJS/AParS/I*/I*/D*/*

@@ -1,0 +1,253 @@
+---
+params:
+  set_title: "2022 MCLC Survey Results"
+  yearofsurvey: 2021
+  filepath: "" 
+title: "`r params$set_title`"
+date: '`r strftime(Sys.time(), format = "%B %d, %Y")`'
+---
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='hide'}
+#######################################
+# PROJECT: More Community, Less Confinement (2022)
+# PURPOSE: Impute values, national estimates, state estimates and costs
+# AUTHOR: JSM
+#######################################
+
+###################################################
+#OVERALL SETUP
+#load necessary packages
+library(openxlsx)
+library(dplyr)
+library(readr)
+library(reshape)
+library(readxl)
+library(tidyverse)
+library(data.table)
+library(formattable)
+library(scales)
+library(mice)
+library(VIM)
+library(finalfit)
+library(janitor)
+library(Hmisc)
+library(eeptools)
+library(scales)
+library(xtable)
+
+#print to word
+library(Gmisc)
+
+#for binding blank dataframes
+cbind.fill <- function(...){
+  nm <- list(...) 
+  nm <- lapply(nm, as.matrix)
+  n <- max(sapply(nm, nrow)) 
+  do.call(cbind, 
+          lapply(nm, function (x) rbind(x, matrix( , n-nrow(x), ncol(x))))
+          ) 
+  }
+
+#Rmd parameters
+MCLCsurveyyear <- params$yearofsurvey
+sp_data_path   <- params$filepath
+
+#years of data
+year     <- as.character(2018:MCLCsurveyyear)
+refyear  <- as.character(2019:MCLCsurveyyear)
+
+#for labeling tables in output
+tablevals.pretty <- c('Overall Admissions',
+                     'Admissions for Probation Violations',
+                     'Admissions for Parole Violations',
+                     'Total Admissions for Technical Violations',
+                     'Admissions for Technical Probation Violations',
+                     'Admissions for Technical Parole Violations',
+                     'Total Admissions for New Crime Violations',
+                     'Admissions for New Crime Probation Violations',
+                     'Admissions for New Crime Parole Violations',
+                     
+                     'Overall Population',
+                     'Population of Probation Violators',
+                     'Population of Parole Violators',
+                     'Total Population of Technical Violators',
+                     'Population of Technical Probation Violators',
+                     'Population of Technical Parole Violators',
+                     'Total Population of New Crime Violators',
+                     'Population of New Crime Probation Violators',
+                     'Population of New Crime Parole Violators'
+                     )
+
+################################################################################
+#CLEAN & PREP DATA
+################################################################################
+
+#read automated_clean to get data, reformat
+source("03_clean.R")
+
+#coding missings for calculating national estimates
+#REQUIRES MANUAL REVIEW OF SURVEY SUBMISSIONS/UPDATING!
+source("special_missings.R")
+
+#all flags should be 0 (w/few exceptions) - if there is a 1 then check state and logic
+table(check.dat$flag_error.na) #flag new offense violation admissions logic
+table(check.dat$flag_error.np) #flag new offense violation population logic
+table(check.dat$flag_error.ta) #flag technical violation admissions logic
+table(check.dat$flag_error.tp) #flag technical violation population logic
+
+#print states/years/metrics where zeroes exist; should exist only for -77 special missing states (abolished parole)
+cbind(state.zeroes,years.zeroes,var.zeroes)
+#stop program if other states have 0s in their data (-77 special missings)
+stopifnot(states77 %in% state.zeroes)
+
+#stop program if analysis dataset has any NAs - there should only be special missings
+stopifnot(nrow(data.frame(which(is.na(specialmissings), arr.ind=TRUE))) == 0)
+#if above check confirms analysis data has no NAs, then write
+write.xlsx(specialmissings, file = paste0(sp_data_path, "/data/mclc_data_2022_specialmissings.xlsx"))
+
+#if above checks confirm data is ready for imputation, proceed and finalize imputation dataframe
+adm_pop_analysis_with_bjs <- adm_pop_analysis_with_bjs1
+
+################################################################################
+# IMPUTATION
+# MICE
+# National Estimates w/95% CI's
+################################################################################
+yearnum <- 1:length(year)
+refnum  <- 1:(max(yearnum)-1)
+
+#calculate imputed values (multiple imputation)
+source("MImp1.R")
+
+######
+#produce confidence intervals
+#post multiple imputation t-test
+#grab response columns for creating estimated counts/CIs
+######
+
+source("MImp2.R")
+
+##############################################################
+################## CREATE A TABLE HERE #######################
+table2018 <- cbind(nat.2018all,natCI.2018all) %>%
+  mutate(across(where(is.numeric),formattable::comma,0),
+         id     = numvar,
+         ' '    = '95% Confidence Interval',
+         '2018' = paste0('(',`V1`,', ',`V2`,')')
+         )
+
+for (i in 2019:MCLCsurveyyear) {
+  temp1 <- get(paste0("nat.",i,"all"))
+  temp2 <- get(paste0("natCI.",i,"all"))
+  test  <- cbind(temp1,temp2) %>%
+    mutate(across(where(is.numeric),formattable::comma,0),
+           !!as.name(i) := paste0('(',`V1`,', ',`V2`,')'))
+  assign(paste0("table",i),test,envir = .GlobalEnv)
+}
+
+#estimates
+tab.full1 <- data.table()
+for (i in year) {
+  temp <- get(paste0("table",i))$Estimate
+  tab.full1  <- data.table(cbind(tab.full1,temp))
+  setnames(tab.full1, "temp", i)
+  tab.full1 <- tab.full1[, lapply(.SD, as.character)]
+}
+
+#confidence intervals
+CIS <- data.table(' '  = table2018$` `,
+                  'id' = table2018$id)
+for (i in year) {
+  temp <- get(paste0("table",i))[[i]]
+  CIS  <- cbind(CIS,temp)
+  setnames(CIS, "temp", i)
+}
+
+#combine
+tab.full <- tab.full1 %>%
+  mutate(id = numvar,
+         ' ' = 'Estimate') %>%
+  relocate(any_of(c('id',' '))) %>%
+  rbind(
+    data.table(' ' = tablevals.pretty,
+               id  = numvar,
+               id2 = 0),
+    CIS,
+    fill = TRUE) %>%
+  mutate(id     = as.numeric(id)) %>%
+  arrange(id,id2) %>%
+  select(-c(id,id2))
+
+#############################################################################
+###############CALCULATING STATE ESTIMATES
+#############################################################################
+
+source("MImp3.R")
+
+#############################
+###COSTS#####################
+
+source("Costs.R")
+
+```
+
+## National Estimates
+
+These estimates incorporate BJS total population and admissions data in calculations across all years.
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+
+print(xtable(tab.full[1:((max(numvar)/2)*3),],
+                           align = c("llcccc")),
+      include.rownames = FALSE,
+      type             = "html")
+
+```
+
+<br>
+<br>
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+print(xtable(tab.full[(((max(numvar)/2)*3)+1):(((max(numvar)/2)*3)*2),],
+                           align = c("llcccc")),
+      include.rownames = FALSE,
+      type             = "html")
+```
+
+## `r as.numeric(last(refyear))` Costs
+
+The total annual cost for incarcerating **probation violators** in `r as.numeric(last(refyear))` is `r dollar_format()(total.pr.vp)`. The total annual cost for incarcerating **parole violators** in `r as.numeric(last(refyear))` is `r dollar_format()(total.pa.vp)`.
+
+<br>
+
+\noindent The total annual cost for incarcerating just those with **technical violations** in `r as.numeric(last(refyear))` is `r dollar_format()(total.tvp)`.
+
+<br>
+
+\noindent The total annual cost for incarcerating just those with **new offense violations** in `r as.numeric(last(refyear))` is `r dollar_format()(total.novp)`.
+
+<br>
+
+### `r as.numeric(last(refyear))` Costs by State
+
+Below is a table of these costs by state (no imputation). Note that missing cells indicate that a state did not submit `r as.numeric(last(refyear))` population data:
+
+<br>
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}
+print(xtable(cost.final[c("State","cost.pr.state","cost.pa.state","cost.tpr.state","cost.tpa.state")] %>%
+                              mutate(
+                                `Overall Probation Violator Cost`   = case_when(cost.pr.state >=0 ~ dollar_format()(cost.pr.state),
+                                                                                  TRUE ~ NA_character_),
+                                `Overall Parole Violator Cost`      = case_when(cost.pa.state >=0 ~ dollar_format()(cost.pa.state),
+                                                                                  TRUE ~ NA_character_),
+                                `Technical Probation Violator Cost` = case_when(cost.tpr.state >=0 ~ dollar_format()(cost.tpr.state),
+                                                                                  TRUE ~ NA_character_),
+                                `Technical Parole Violator Cost`    = case_when(cost.tpa.state >=0 ~ dollar_format()(cost.tpa.state),
+                                                                                  TRUE ~ NA_character_)
+                                     ) %>%
+                              select(-c(cost.pr.state,cost.pa.state,cost.tpr.state,cost.tpa.state)),
+                           align = c("llrrrr")),
+      include.rownames = FALSE,
+      type             = "html")
+```

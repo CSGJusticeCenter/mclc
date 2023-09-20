@@ -1,0 +1,53 @@
+ncrp,popdenom,STATE,note
+A,BJS,Alabama,Alabama only reported 'White' race and ethnicity data for their readmissions to prison from parole observations in the NCRP admissions data set; the remaining observations were missing. 
+A,CEN,Alabama,Alabama only reported 'White' race and ethnicity data for their readmissions to prison from parole observations in the NCRP admissions data set; the remaining observations were missing. 
+N,BJS,Alabama,Alabama only reported 'White' race and ethnicity data for their readmissions to prison from parole observations in the NCRP year-end population data set; the remaining observations were missing. 
+N,CEN,Alabama,Alabama only reported 'White' race and ethnicity data for their readmissions to prison from parole observations in the NCRP year-end population data set; the remaining observations were missing. 
+A,BJS,Alaska,Alaska did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP admissions data set.
+A,CEN,Alaska,Alaska did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP admissions data set.
+N,BJS,Alaska,Alaska did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP year-end population data set.
+N,CEN,Alaska,Alaska did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP year-end population data set.
+A,BJS,Connecticut,Connecticut did not report any observations in the NCRP admissions data set. 
+A,CEN,Connecticut,Connecticut did not report any observations in the NCRP admissions data set. 
+N,BJS,Connecticut,Connecticut did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP year-end population data set.
+N,CEN,Connecticut,Connecticut did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP year-end population data set.
+A,BJS,Hawaii,Hawaii does not have parole population data (Bureau of Justice Statistics) broken out by race and ethnicity.
+N,BJS,Hawaii,"Hawaii did not report any readmissions to prison from parole observations in the NCRP year-end population data set.  Additionally, Hawaii does not have parole population data (Bureau of Justice Statistics) broken out by race and ethnicity."
+N,CEN,Hawaii,Hawaii did not report any readmissions to prison from parole observations in the NCRP year-end population data set.
+N,BJS,Idaho,Idaho did not report admission type (and thus readmissions to prison from parole) for observations in NCRP year-end population data.  
+A,BJS,Louisiana,The majority of observations from the NCRP admissions data set for Louisiana are missing race and ethnicity.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+A,CEN,Louisiana,The majority of observations from the NCRP admissions data set for Louisiana are missing race and ethnicity.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+N,BJS,Louisiana,The majority of observations from the NCRP year-end population data set for Louisiana are missing race and ethnicity.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+N,CEN,Louisiana,The majority of observations from the NCRP year-end population data set for Louisiana are missing race and ethnicity.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+A,BJS,Maine,"Maine has minimal readmissions to prison from parole observations in the NCRP admissions data for race and ethnicity categories of 'Black' and 'White'.  The population data from Bureau of Justice Statistics has estimates for 'Black' clients of 0, so rate and relative rate index cannot be calculated.  Maine did not report any observations in the 'Hispanic' race and ethnicity category."
+A,CEN,Maine,Maine did not report any readmissions to prison from parole observations with 'Hispanic' as the race and ethnicity category in the NCRP admissions data set.  
+N,BJS,Maine,"Maine has minimal readmissions to prison from parole observations in the NCRP year-end population data for race and ethnicity categories of 'Black' and 'White'.  The population data from Bureau of Justice Statistics has estimates for 'Black' clients of 0, so rate and relative rate index cannot be calculated.  Maine did not report any observations in the 'Hispanic' race and ethnicity category."
+N,CEN,Maine,Maine did not report any readmissions to prison from parole observations with 'Hispanic' as the race and ethnicity category in the NCRP year-end population data set.  
+A,BJS,Maryland,Maryland does not have parole population data (Bureau of Justice Statistics) for the Hispanic category and thus the rate and relative rate index cannot be calculated for the Hispanic category.  
+N,BJS,Maryland,Maryland does not have parole population data (Bureau of Justice Statistics) for the Hispanic category and thus the rate and relative rate index cannot be calculated for the Hispanic category.  
+A,BJS,Michigan,The majority of observations from the NCRP admissions data set for Michigan are missing a race and ethnicity category.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+A,CEN,Michigan,The majority of observations from the NCRP admissions data set for Michigan are missing a race and ethnicity category.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+N,BJS,Michigan,The majority of observations from the NCRP year-end population data set for Michigan are missing a race and ethnicity category.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+N,CEN,Michigan,The majority of observations from the NCRP year-end population data set for Michigan are missing a race and ethnicity category.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+A,BJS,Nevada,Nevada does not have parole population data (Bureau of Justice Statistics) broken out by race and ethnicity.
+N,BJS,Nevada,Nevada does not have parole population data (Bureau of Justice Statistics) broken out by race and ethnicity.
+A,BJS,Oklahoma,The majority of observations from the NCRP admissions data set for Oklahoma are missing race and ethnicity.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+A,CEN,Oklahoma,The majority of observations from the NCRP admissions data set for Oklahoma are missing race and ethnicity.  The few observations that are not missing have a race and ethnicity category of 'Hispanic'. 
+A,BJS,Oregon,Oregon did not report any readmissions to prison from parole observations in the NCRP admissions data set. 
+A,CEN,Oregon,Oregon did not report any readmissions to prison from parole observations in the NCRP admissions data set. 
+N,BJS,Oregon,Oregon did not report any readmissions to prison from parole observations in the NCRP year-end population data set. 
+N,CEN,Oregon,Oregon did not report any readmissions to prison from parole observations in the NCRP year-end population data set. 
+A,BJS,South Dakota,South Dakota did not report race and ethnicity in the NCRP admissions data set.
+A,CEN,South Dakota,South Dakota did not report race and ethnicity in the NCRP admissions data set.
+N,BJS,South Dakota,South Dakota did not report race and ethnicity in the NCRP year-end population data set.
+N,CEN,South Dakota,South Dakota did not report race and ethnicity in the NCRP year-end population data set.
+A,BJS,Vermont,Vermont did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP admissions data set.
+A,CEN,Vermont,Vermont did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP admissions data set.
+N,BJS,Vermont,Vermont did not report any readmissions to prison from parole observations in the NCRP year-end population data set.
+N,CEN,Vermont,Vermont did not report any readmissions to prison from parole observations in the NCRP year-end population data set.
+A,BJS,Virginia,Virginia did not report any readmissions to prison from parole observations with 'Hispanic' as the race and ethnicity category in the NCRP admissions data set.  
+A,CEN ,Virginia,Virginia did not report any readmissions to prison from parole observations with 'Hispanic' as the race and ethnicity category in the NCRP admissions data set.  
+N,BJS,Virginia,Virginia did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP year-end population data set.
+N,CEN,Virginia,Virginia did not report admission type (and thus readmissions to prison from parole) for observations in the NCRP year-end population data set.
+N,BJS,West Virginia,West Virginia did not report any readmissions to prison from parole observations with 'Hispanic' as the race and ethnicity category in the NCRP year-end population data set.  
+N,CEN,West Virginia,West Virginia did not report any readmissions to prison from parole observations with 'Hispanic' as the race and ethnicity category in the NCRP year-end population data set.  
