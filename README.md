@@ -1,9 +1,9 @@
-# More Community, Less Confinement
+# Supervsion Violations and Their Impact on Incarceration
 
 ## Project overview  
 In 2018, The Council of State Governments (CSG) Justice Center sent out an annual survey to corrections departments in all 50 states to collect data on the impact of supervision violations on prison admissions and populations. The study found that in 2017, probation and parole violations made up as much as 45 percent of state prison admissions nationwide, with wide variation across states. With continued partnership with the Correctional Leaders Association and support from Arnold Ventures, the CSG Justice Center will be collecting and reporting these numbers annually through 2025. 
 
-In September 2022, the CSG Justice Center sent the [More Community, Less Confinement]() survey (created in Google Sheets) to the departments of corrections of all 50 states. 
+In September 2022, the CSG Justice Center sent the [Supervision Violations and Their Impact on Incarceration](https://projects.csgjusticecenter.org/supervision-violations-impact-on-incarceration/methodology/) survey (created in Google Sheets) to the departments of corrections of all 50 states. 
 
 Respondents were asked to provide aggregate counts of the number of people admitted to or in prison on a given day across numerous categories for calendar years 2018, 2019, 2020, and 2021. Respondents were given the option to provide the data according to fiscal year if that is the standard reporting method for the state and indicate if so.  
 
@@ -27,9 +27,9 @@ The categories requested include:
 
 * *Cost*: Average operating cost per person per day across all prison facilities.   
 
-Where available, data provided in the survey was supplemented with publicly available data or data that we routinely collect for other purposes. We note on each [state’s page]() when we used publicly available data.  
+Where available, data provided in the survey was supplemented with publicly available data or data that we routinely collect for other purposes. We note on each [state’s page](https://projects.csgjusticecenter.org/supervision-violations-impact-on-incarceration/report/#statedashboard) when we used publicly available data.  
 
-Additionally, Racial and Ethnic disparities in prison admissions for parole revocations and in populations incarcerated for parole revocations are reported as relative rate indices (white reference group) for all states where data is publicly available. Disparties in race and ethnicity are reported as total disparities and the portion of disparities attributable to parole revocations. We note on each [state’s page]() how the relative rate indices are calculated, and when we are unable to calculate racial and ethnic disparities.  
+Additionally, Racial and Ethnic disparities in prison admissions for parole revocations and in populations incarcerated for parole revocations are reported as relative rate indices (white reference group) for all states where data is publicly available. Disparties in race and ethnicity are reported as total disparities and the portion of disparities attributable to parole revocations. We note on each [state’s page](https://projects.csgjusticecenter.org/supervision-violations-impact-on-incarceration/report/#statedashboard) how the relative rate indices are calculated, and when we are unable to calculate racial and ethnic disparities.  
 
 ### Caution on Comparing States: 
 
@@ -41,7 +41,7 @@ States define admissions and populations due to supervision violations different
 * When provided the opportunity, states revised data that they previously submitted in past years.  
 * States may continue to revise their survey responses during future validation processes.  
 
-For more information about [More Community, Less Confinement](), visit our website or [OSF project registration](https://osf.io/f74d6/).   
+For more information about [Supervision Violations and Their Impact on Incarceration](https://projects.csgjusticecenter.org/supervision-violations-impact-on-incarceration/), visit our website or [OSF project registration](https://osf.io/f74d6/).   
 
 ## Repository  
 This repository contains code that conducts three operations:
