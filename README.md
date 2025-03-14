@@ -1,4 +1,4 @@
-# Supervsion Violations and Their Impact on Incarceration
+# Supervision Violations and Their Impact on Incarceration
 
 ## Project overview  
 In 2018, The Council of State Governments (CSG) Justice Center sent out an annual survey to corrections departments in all 50 states to collect data on the impact of supervision violations on prison admissions and populations. The study found that in 2017, probation and parole violations made up as much as 45 percent of state prison admissions nationwide, with wide variation across states. With continued partnership with the Correctional Leaders Association and support from Arnold Ventures, the CSG Justice Center will be collecting and reporting these numbers annually through 2025. 
